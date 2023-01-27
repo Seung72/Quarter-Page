@@ -5,12 +5,16 @@ plugins {
 
 android {
     namespace 'com.cholee.quarter_page'
-    compileSdk 32
+    compileSdk 33
+
+    viewBinding {
+        enabled true
+    }
 
     defaultConfig {
         applicationId "com.cholee.quarter_page"
         minSdk 23
-        targetSdk 32
+        targetSdk 33
         versionCode 1
         versionName "1.0"
 
@@ -34,6 +38,7 @@ android {
 
 dependencies {
 
+    implementation 'com.android.databinding:viewbinding:7.4.0'
     implementation 'androidx.core:core-ktx:1.7.0'
     implementation 'androidx.appcompat:appcompat:1.6.0'
     implementation 'com.google.android.material:material:1.7.0'

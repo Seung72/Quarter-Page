@@ -4,15 +4,131 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/white"
     tools:context=".MainActivity">
 
+    <include
+        android:id="@+id/include"
+        layout="@layout/toolbar" />
+
+    <androidx.viewpager2.widget.ViewPager2
+        android:id="@+id/image_viewpager"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="10dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/include" />
+
     <TextView
+        android:id="@+id/mainTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Hello World!"
+        android:layout_margin="10dp"
+        android:textColor="@color/black"
+        android:text="카테고리별 인기도서"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/image_viewpager" />
+
+    <HorizontalScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="10dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/mainTitle">
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <Button
+                    android:id="@+id/economy"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:minHeight="0dp"
+                    android:minWidth="0dp"
+                    android:padding="10dp"
+                    android:layout_marginRight="10dp"
+                    style="?android:attr/borderlessButtonStyle"
+                    android:background="@drawable/category_btn_style"
+                    android:textColor="@color/black"
+                    android:text="경제"/>
+                <Button
+                    android:id="@+id/self_help"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:minHeight="0dp"
+                    android:minWidth="0dp"
+                    android:padding="10dp"
+                    android:layout_marginRight="10dp"
+                    style="?android:attr/borderlessButtonStyle"
+                    android:background="@drawable/category_btn_style"
+                    android:textColor="@color/black"
+                    android:text="자기계발"/>
+                <Button
+                    android:id="@+id/poetry_essay"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:minHeight="0dp"
+                    android:minWidth="0dp"
+                    android:padding="10dp"
+                    android:layout_marginRight="10dp"
+                    style="?android:attr/borderlessButtonStyle"
+                    android:background="@drawable/category_btn_style"
+                    android:textColor="@color/black"
+                    android:text="시 / 에세이"/>
+                <Button
+                    android:id="@+id/novel"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:minHeight="0dp"
+                    android:minWidth="0dp"
+                    android:padding="10dp"
+                    android:layout_marginRight="10dp"
+                    style="?android:attr/borderlessButtonStyle"
+                    android:background="@drawable/category_btn_style"
+                    android:textColor="@color/black"
+                    android:text="소설"/>
+                <Button
+                    android:id="@+id/study_book"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:minHeight="0dp"
+                    android:minWidth="0dp"
+                    android:padding="10dp"
+                    android:layout_marginRight="10dp"
+                    style="?android:attr/borderlessButtonStyle"
+                    android:background="@drawable/category_btn_style"
+                    android:textColor="@color/black"
+                    android:text="교재/수험서"/>
+            </LinearLayout>
+
+
+        </ScrollView>
+
+
+
+    </HorizontalScrollView>
+
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingTop="8dp"
+        android:paddingBottom="8dp"
+        android:background="@color/white"
+        app:itemIconTint="@drawable/menu_selector_color"
+        app:itemTextColor="@drawable/menu_selector_color"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:menu="@menu/bottom_navi" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
