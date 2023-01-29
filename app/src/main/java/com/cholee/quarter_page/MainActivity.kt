@@ -24,12 +24,10 @@ class MainActivity : AppCompatActivity() {
         setContentView(view)
         val pref = getSharedPreferences("checkFirst", MODE_PRIVATE)
         val checkFirst = pref.getBoolean("checkFirst", false)
-        if (!checkFirst) {
+        if (checkFirst) {
             val editor = pref.edit()
-            editor.putBoolean("checkFirst", true)
-            editor.commit()
-            val intent = Intent(this@MainActivity, OnBoardingActivity::class.java)
-            startActivity(intent)
+            editor.putBoolean("checkFirst", true).commit()
+            startActivity(Intent(this,OnBoardingActivity::class.java))
             finish()
         } else {
             // 첫 실행이 아닐 시 실행

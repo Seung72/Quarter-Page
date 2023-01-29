@@ -86,7 +86,7 @@ class OnBoardingActivity : AppCompatActivity() {
     }
     private fun getItem(i: Int) = binding.vpOnboard.currentItem + i
     private fun moveToMain() {
-        startActivity(Intent(this@OnBoardingActivity, MainActivity::class.java))
+        startActivity(Intent(this, LoginActivity::class.java))
         finish()
     }
     inner class PagerAdapterInit : PagerAdapter() {
