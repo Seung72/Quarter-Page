@@ -68,13 +68,13 @@ class OnBoardingActivity : AppCompatActivity() {
         }
     }
     private fun addTopDots(currentPage: Int) {
-        dots = ArrayList<TextView>(layoutArr.size)
 
         val active = resources.getIntArray(R.array.array_dot_active)
         val inactive = resources.getIntArray(R.array.array_dot_inactive)
 
         binding.layoutDots.removeAllViews()
-        for (i in dots.indices) {
+        for (i in layoutArr.indices) {
+            dots.add(TextView(context))
             dots[i] = TextView(this)
             dots[i]!!.text = Html.fromHtml("&#8226;")
             dots[i]!!.textSize = 35f
