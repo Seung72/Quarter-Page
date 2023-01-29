@@ -1,19 +1,15 @@
 package com.cholee.quarter_page
 
-import android.content.res.Resources
-import android.graphics.Color
-import androidx.appcompat.app.AppCompatActivity
+import android.app.Application
+import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
-import android.view.ViewGroup
-import android.widget.LinearLayout
-import android.widget.RelativeLayout
-import android.widget.TextView
-import androidx.cardview.widget.CardView
+import android.preference.PreferenceManager
+import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.RecyclerView
 import androidx.viewpager2.widget.ViewPager2
 import com.cholee.quarter_page.databinding.ActivityMainBinding
-import com.cholee.quarter_page.databinding.ToolbarBinding
 
 class MainActivity : AppCompatActivity() {
 
@@ -26,6 +22,18 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         val view = binding.root
         setContentView(view)
+        val pref = getSharedPreferences("checkFirst", MODE_PRIVATE)
+        val checkFirst = pref.getBoolean("checkFirst", false)
+        if (!checkFirst) {
+            val editor = pref.edit()
+            editor.putBoolean("checkFirst", true)
+            editor.commit()
+            val intent = Intent(this@MainActivity, OnBoardingActivity::class.java)
+            startActivity(intent)
+            finish()
+        } else {
+            // 첫 실행이 아닐 시 실행
+        }
 
         val imageList = scrollImgList()
         val pageMarginPx = resources.getDimensionPixelOffset(R.dimen.pageMargin)

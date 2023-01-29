@@ -10,9 +10,9 @@
 
     <Button
         android:id="@+id/btn_logo"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        android:layout_margin="8dp"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_marginLeft="10dp"
         android:background="@drawable/app_logo"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -20,11 +20,12 @@
 
     <EditText
         android:id="@+id/et_search"
-        android:layout_width="250dp"
+        android:layout_width="300dp"
         android:layout_height="wrap_content"
         android:background="#EFEFEF"
         android:hint="이번주 '신간도서' 보기"
         android:padding="4dp"
+        android:layout_margin="5dp"
         android:textColor="@color/black"
         android:textColorHint="#B3B3B3"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -34,9 +35,9 @@
 
     <Button
         android:id="@+id/btn_search"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        android:layout_margin="8dp"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_marginRight="10dp"
         android:background="@drawable/round_search"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

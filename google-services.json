@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "1057394362475",
+    "project_id": "quarter-page",
+    "storage_bucket": "quarter-page.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1057394362475:android:953e81e6814b064832892e",
+        "android_client_info": {
+          "package_name": "com.cholee.quarter_page"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1057394362475-mv3k0khl03kij0ruhaaa2fru3pf08hgu.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCsLxRZjxrq47rgn41ehBkjKZ1Z9y_6gFI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1057394362475-mv3k0khl03kij0ruhaaa2fru3pf08hgu.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

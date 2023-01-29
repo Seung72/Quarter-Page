@@ -1,3 +1,4 @@
 <resources>
-    <string name="app_name">Quarter-Page</string>
+    <string name="app_name">1/4 Page</string>
+    <string name="app_name_kr">1/4 페이지</string>
 </resources>
