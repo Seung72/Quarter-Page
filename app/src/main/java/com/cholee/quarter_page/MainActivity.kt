@@ -7,15 +7,23 @@ import android.os.Bundle
 import android.os.Handler
 import android.preference.PreferenceManager
 import androidx.appcompat.app.AppCompatActivity
+import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.viewpager2.widget.ViewPager2
 import com.cholee.quarter_page.databinding.ActivityMainBinding
+import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.ktx.Firebase
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : AppCompatActivity(), BooksAdapter.OnItemClickListener {
 
     private lateinit var binding: ActivityMainBinding
     private val sliderImageHandler: Handler = Handler()
     private val sliderImageRunnable = Runnable { binding.imageViewpager.currentItem = binding.imageViewpager.currentItem + 1 }
+
+    lateinit var bookList: ArrayList<Books>
+    lateinit var booksAdapter: BooksAdapter
+
+    lateinit var firestore: FirebaseFirestore
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -24,7 +32,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(view)
         val pref = getSharedPreferences("checkFirst", MODE_PRIVATE)
         val checkFirst = pref.getBoolean("checkFirst", false)
-        if (checkFirst) {
+        if (!checkFirst) {
             val editor = pref.edit()
             editor.putBoolean("checkFirst", true).commit()
             startActivity(Intent(this,OnBoardingActivity::class.java))
@@ -55,9 +63,34 @@ class MainActivity : AppCompatActivity() {
             }
         }
 
+        bookList = ArrayList()
+        booksAdapter = BooksAdapter(this, bookList)
+
+        binding.rvHorizon.layoutManager = GridLayoutManager(this, 3)
+        binding.rvHorizon.adapter = booksAdapter
+
+        booksAdapter.onItemClickListener = this
+
+        firestore.collection("book").addSnapshotListener {
+            querySnapShot, firebaseFireStoreException ->
+            if(querySnapShot != null) {
+                for (dc in querySnapShot.documentChanges) {
+                    var books = dc.document.toObject(Books::class.java)
+                    books.id = dc.document.id
+                    bookList.add(books)
+                }
+            }
+            booksAdapter.notifyDataSetChanged()
+        }
 
 
 
+
+    }
+    override fun onItemClick(books: Books) {
+        var intent = Intent(this, BooksActivity::class.java)
+        intent.putExtra("id", books.id)
+        startActivity(intent)
     }
 
     override fun onResume() {

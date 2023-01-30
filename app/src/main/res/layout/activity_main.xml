@@ -143,6 +143,20 @@
         </ScrollView>
     </HorizontalScrollView>
 
+    <HorizontalScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toTopOf="@+id/view"
+        app:layout_constraintTop_toBottomOf="@+id/horizontalScrollView">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_horizon"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
+
+
+    </HorizontalScrollView>
+
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottomNavigationView"
         android:layout_width="match_parent"

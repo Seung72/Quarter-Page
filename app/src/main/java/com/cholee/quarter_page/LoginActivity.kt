@@ -28,12 +28,12 @@ class LoginActivity : AppCompatActivity() {
         }
 
         binding.btnLogin.setOnClickListener {
-            signIn(binding.etEmail.toString(), binding.etPassword.toString())
+            signIn(binding.etEmail.text.toString(), binding.etPassword.text.toString())
         }
     }
 
 
-    public fun OnStart() {
+    public override fun onStart() {
         super.onStart()
         moveMainPage(auth?.currentUser)
     }
@@ -47,10 +47,10 @@ class LoginActivity : AppCompatActivity() {
 
     private fun signIn(email: String, password: String) {
         if (email.isNotEmpty() && password.isNotEmpty() && email.contains("@")) {
-            var userName = email.substring(0 until email.indexOf("@"))
             auth?.signInWithEmailAndPassword(email, password)
                 ?.addOnCompleteListener(this) { task ->
                     if (task.isSuccessful) {
+                        var userName = email.substring(0 until email.indexOf("@"))
                         Snackbar.make(binding.loginLayout, userName + "님 안녕하세요!" ,Snackbar.LENGTH_SHORT).show()
                         moveMainPage(auth?.currentUser)
                     } else {
