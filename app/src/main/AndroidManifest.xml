@@ -16,6 +16,13 @@
         android:theme="@style/Theme.QuarterPage"
         tools:targetApi="31">
         <activity
+            android:name=".SettingsActivity"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
             android:name=".BooksActivity"
             android:exported="false">
             <meta-data

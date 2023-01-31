@@ -6,12 +6,15 @@ import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
 import android.preference.PreferenceManager
+import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.viewpager2.widget.ViewPager2
 import com.cholee.quarter_page.databinding.ActivityMainBinding
+import com.google.android.material.bottomnavigation.BottomNavigationMenuView
 import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 
 class MainActivity : AppCompatActivity(), BooksAdapter.OnItemClickListener {
@@ -23,11 +26,12 @@ class MainActivity : AppCompatActivity(), BooksAdapter.OnItemClickListener {
     lateinit var bookList: ArrayList<Books>
     lateinit var booksAdapter: BooksAdapter
 
-    lateinit var firestore: FirebaseFirestore
+     lateinit var firestore: FirebaseFirestore
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
+        firestore = FirebaseFirestore.getInstance()
         val view = binding.root
         setContentView(view)
         val pref = getSharedPreferences("checkFirst", MODE_PRIVATE)
@@ -71,21 +75,28 @@ class MainActivity : AppCompatActivity(), BooksAdapter.OnItemClickListener {
 
         booksAdapter.onItemClickListener = this
 
-        firestore.collection("book").addSnapshotListener {
-            querySnapShot, firebaseFireStoreException ->
-            if(querySnapShot != null) {
-                for (dc in querySnapShot.documentChanges) {
-                    var books = dc.document.toObject(Books::class.java)
-                    books.id = dc.document.id
-                    bookList.add(books)
-                }
+//        val db = Firebase.firestore
+//        val city = hashMapOf(
+//            "name" to "Los Angeles",
+//            "state" to "CA",
+//            "country" to "USA"
+//        )
+//        db.collection("cities").document("LA")
+//            .set(city)
+//            .addOnSuccessListener { Log.d(TAG, "DocumentSnapshot successfully written!") }
+//            .addOnFailureListener { e -> Log.w(TAG, "Error writing document", e) }
+
+        binding.bottomNavigationView.setOnItemSelectedListener { item ->
+            when (item.itemId) {
+                // R.id.home -> { startActivity(Intent(this, MainActivity::class.java)) }
+                // R.id.my_library -> { startActivity(Intent(this, MyLibrary::class.java)) }
+                R.id.settings -> { startActivity(Intent(this, SettingsActivity::class.java)) }
             }
-            booksAdapter.notifyDataSetChanged()
+            true
         }
-
-
-
-
+    }
+    companion object {
+        const val TAG = "MyLog"
     }
     override fun onItemClick(books: Books) {
         var intent = Intent(this, BooksActivity::class.java)
