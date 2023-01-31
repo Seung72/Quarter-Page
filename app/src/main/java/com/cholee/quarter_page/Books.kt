@@ -7,5 +7,6 @@ class Books (
     var author: String = "",
     var title: String = "",
     var price: Int = 0,
+    var tag: String = "",
     var id: String? = null
 )

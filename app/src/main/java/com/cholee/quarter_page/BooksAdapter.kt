@@ -28,7 +28,7 @@ class BooksAdapter(var context: Context, var booksList: ArrayList<Books>): Recyc
         }
     }
 
-    inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView!!){
+    inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView){
         var ivBook: ImageView = itemView.findViewById(R.id.iv_book)
         var author: TextView = itemView.findViewById(R.id.tv_author)
         var title: TextView = itemView.findViewById(R.id.tv_title)
@@ -61,6 +61,10 @@ class BooksAdapter(var context: Context, var booksList: ArrayList<Books>): Recyc
         holder.ivBook.layoutParams = LinearLayoutCompat.LayoutParams(300, 400)
         Glide.with(holder.itemView.context).load(booksList[position].imageUrl).into(holder.ivBook)
         holder.bind(book)
+        holder.author.text = booksList[position].author
+        holder.title.text = booksList[position].title
+        holder.price.text = booksList[position].price.toString()
+        holder.tag.text = booksList[position].tag
     }
 
 
