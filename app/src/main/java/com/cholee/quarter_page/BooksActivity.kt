@@ -23,13 +23,16 @@ class BooksActivity : AppCompatActivity() {
         fireStore = FirebaseFirestore.getInstance()
 
         if(id != null) {
-            fireStore.collection("book").document(id).get().addOnCompleteListener{ task ->
+            fireStore.collection("books").document("economy" + (id.toInt()+1).toString()).get().addOnCompleteListener{ task ->
                 if(task.isSuccessful) {
                     var books = task.result?.toObject(Books::class.java)
                     Glide.with(this).load(books?.imageUrl).into(binding.ivBookImg)
                     binding.tvTitle.text = books?.title
                     binding.tvAuthor.text = books?.author
                     binding.tvPrice.text = books?.price.toString()
+                    binding.tvMainText.text = books?.text
+                } else {
+                    binding.tvTitle.text = "오류"
                 }
             }
         }

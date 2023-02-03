@@ -22,7 +22,9 @@ class BooksAdapter(var context: Context, var booksList: ArrayList<Books>): Recyc
         val fireStore = FirebaseFirestore.getInstance()
         fireStore.collection("books").get().addOnSuccessListener { result ->
             for (snapshot in result) {
-                booksList.add(snapshot.toObject(Books::class.java))
+                var book = snapshot.toObject(Books::class.java)
+                var bookId = book.id
+                booksList.add(book)
             }
             notifyDataSetChanged()
         }
@@ -34,18 +36,19 @@ class BooksAdapter(var context: Context, var booksList: ArrayList<Books>): Recyc
         var title: TextView = itemView.findViewById(R.id.tv_title)
         var price: TextView = itemView.findViewById(R.id.tv_price)
         var tag: TextView = itemView.findViewById(R.id.tv_tag)
+        var id: TextView = itemView.findViewById(R.id.book_id)
 
         fun bind(book: Books) {
             Glide.with(context).load(book.imageUrl).into(ivBook)
             ivBook.setOnClickListener{
-                if(onItemClickListener != null) onItemClickListener?.onItemClick(book)
+                if(onItemClickListener != null) onItemClickListener?.onItemClick(book, id.text.toString())
             }
         }
     }
 
 
     interface OnItemClickListener {
-        fun onItemClick(book: Books)
+        fun onItemClick(book: Books, id: String)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -65,6 +68,7 @@ class BooksAdapter(var context: Context, var booksList: ArrayList<Books>): Recyc
         holder.title.text = booksList[position].title
         holder.price.text = booksList[position].price.toString()
         holder.tag.text = booksList[position].tag
+        holder.id.text = booksList[position].id.toString()
     }
 
 

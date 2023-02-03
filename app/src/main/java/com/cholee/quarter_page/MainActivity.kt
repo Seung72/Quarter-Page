@@ -16,6 +16,7 @@ import com.google.android.material.bottomnavigation.BottomNavigationMenuView
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
+import java.text.FieldPosition
 
 class MainActivity : AppCompatActivity(), BooksAdapter.OnItemClickListener {
 
@@ -75,17 +76,6 @@ class MainActivity : AppCompatActivity(), BooksAdapter.OnItemClickListener {
 
         booksAdapter.onItemClickListener = this
 
-//        val db = Firebase.firestore
-//        val city = hashMapOf(
-//            "name" to "Los Angeles",
-//            "state" to "CA",
-//            "country" to "USA"
-//        )
-//        db.collection("cities").document("LA")
-//            .set(city)
-//            .addOnSuccessListener { Log.d(TAG, "DocumentSnapshot successfully written!") }
-//            .addOnFailureListener { e -> Log.w(TAG, "Error writing document", e) }
-
         binding.bottomNavigationView.setOnItemSelectedListener { item ->
             when (item.itemId) {
                 // R.id.home -> { startActivity(Intent(this, MainActivity::class.java)) }
@@ -95,12 +85,10 @@ class MainActivity : AppCompatActivity(), BooksAdapter.OnItemClickListener {
             true
         }
     }
-    companion object {
-        const val TAG = "MyLog"
-    }
-    override fun onItemClick(books: Books) {
+
+    override fun onItemClick(book: Books, id: String) {
         var intent = Intent(this, BooksActivity::class.java)
-        intent.putExtra("id", books.id)
+        intent.putExtra("id", id)
         startActivity(intent)
     }
 

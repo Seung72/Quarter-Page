@@ -48,5 +48,13 @@
             android:text="원"
             android:textColor="@color/black"
             android:textSize="14dp" />
+        <TextView
+            android:id="@+id/book_id"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="20dp"
+            android:text="0"
+            android:textColor="@color/black"
+            android:visibility="visible"/>
     </LinearLayout>
 </LinearLayout>
