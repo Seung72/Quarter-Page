@@ -107,8 +107,10 @@ class MainActivity : AppCompatActivity(), BooksAdapter.OnItemClickListener {
     private fun scrollImgList(): ArrayList<Int> {
         val imageList = arrayListOf<Int>().apply {
             for (i in 0..2) {
-                add(R.drawable.img_scroll_test)
-                add(R.drawable.test)
+                add(R.drawable.main_scroll1)
+                add(R.drawable.main_scroll2)
+                add(R.drawable.main_scroll3)
+                add(R.drawable.main_scroll4)
             }
         }
         return imageList
