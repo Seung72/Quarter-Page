@@ -14,6 +14,7 @@
 - Android Studio
 - Glide
 - Firebase
+- Lottie
 
 ## ⌨️ OnBoarding, Login
 
