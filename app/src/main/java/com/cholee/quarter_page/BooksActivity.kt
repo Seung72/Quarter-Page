@@ -1,12 +1,13 @@
 package com.cholee.quarter_page
 
-import android.os.Binder
-import androidx.appcompat.app.AppCompatActivity
+import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
 import com.bumptech.glide.Glide
 import com.cholee.quarter_page.databinding.ActivityBooksBinding
 import com.google.firebase.firestore.FirebaseFirestore
-import com.google.firebase.ktx.Firebase
+
 
 class BooksActivity : AppCompatActivity() {
 
@@ -18,6 +19,7 @@ class BooksActivity : AppCompatActivity() {
         binding = ActivityBooksBinding.inflate(layoutInflater)
         var view = binding.root
         var id = intent.getStringExtra("id")
+        var pdf: String = ""
         setContentView(view)
 
         fireStore = FirebaseFirestore.getInstance()
@@ -31,10 +33,25 @@ class BooksActivity : AppCompatActivity() {
                     binding.tvAuthor.text = books?.author
                     binding.tvPrice.text = books?.price.toString()
                     binding.tvMainText.text = books?.text
+                    pdf = books?.pdfUrl.toString()
                 } else {
                     binding.tvTitle.text = "오류"
                 }
             }
         }
+        binding.btnPurchase.setOnClickListener{
+            openPdf(pdf)
+        }
+    }
+
+    private fun openPdf(pdfUrl: String) {
+
+        var uri: Uri = Uri.parse(pdfUrl)
+        var intent = Intent(Intent.ACTION_VIEW)
+        intent.setDataAndType(uri, "application/pdf")
+        intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP
+        intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK
+        intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION)
+        startActivity(intent)
     }
 }
