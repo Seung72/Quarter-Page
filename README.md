@@ -15,13 +15,13 @@
 - Glide
 - Firebase
 
-## ⌨️ Sign Up & Login
+## ⌨️ OnBoarding, Login
 
-<img src="./img/signup.png/" width="250" style="border: 1px solid gray; border-radius: 26px"> <img src="./img/login.png/" width="250" style="border: 1px solid gray; border-radius: 26px">
+<img src="./img/onboarding-login.gif/" width="250" style="border: 1px solid gray; border-radius: 26px">
 
 ## 📱 Main Screen
 
-<img src="./img/main.png/" width="250" style="border: 1px solid gray; border-radius: 26px"> <img src="./img/transition.gif/" width="250" style="border: 1px solid gray; border-radius: 26px">
+<img src="./img/readbook.gif/" width="250" style="border: 1px solid gray; border-radius: 26px">
 
 > #### 📝 Commit Convention
 >
