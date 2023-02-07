@@ -73,17 +73,20 @@
                 android:textSize="14sp"
                 android:text="비밀번호"
                 android:textStyle="bold"/>
+
             <EditText
                 android:id="@+id/et_password"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:inputType="textPassword"
+                android:background="@drawable/et_style"
+                android:ems="10"
+                android:hint="Password"
                 android:padding="5dp"
                 android:textColor="@color/black"
-                android:textSize="14sp"
-                android:background="@drawable/et_style"
-                android:hint="Password"
                 android:textColorHint="@color/gray"
-                android:ems="10"/>
+                android:textSize="14sp" />
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -94,7 +97,7 @@
                 android:textStyle="bold"/>
             <EditText
                 android:id="@+id/et_password_verify"
-                android:inputType="textVisiblePassword"
+                android:inputType="textPassword"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:padding="5dp"
