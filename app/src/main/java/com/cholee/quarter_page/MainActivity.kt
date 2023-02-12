@@ -1,22 +1,17 @@
 package com.cholee.quarter_page
 
-import android.app.Application
-import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
-import android.preference.PreferenceManager
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.viewpager2.widget.ViewPager2
 import com.cholee.quarter_page.databinding.ActivityMainBinding
-import com.google.android.material.bottomnavigation.BottomNavigationMenuView
 import com.google.firebase.firestore.FirebaseFirestore
-import com.google.firebase.firestore.ktx.firestore
-import com.google.firebase.ktx.Firebase
-import java.text.FieldPosition
+import com.nex3z.togglebuttongroup.SingleSelectToggleGroup
+
 
 class MainActivity : AppCompatActivity(), BooksAdapter.OnItemClickListener {
 
@@ -27,7 +22,9 @@ class MainActivity : AppCompatActivity(), BooksAdapter.OnItemClickListener {
     lateinit var bookList: ArrayList<Books>
     lateinit var booksAdapter: BooksAdapter
 
-     lateinit var firestore: FirebaseFirestore
+    lateinit var firestore: FirebaseFirestore
+
+    var categoryId = 2131296756
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -68,13 +65,25 @@ class MainActivity : AppCompatActivity(), BooksAdapter.OnItemClickListener {
             }
         }
 
-        bookList = ArrayList()
-        booksAdapter = BooksAdapter(this, bookList)
 
+        bookList = ArrayList()
+        booksAdapter = BooksAdapter(this, bookList, binding.tbgCategory.checkedId)
+
+        binding.tbgCategory.check(2131296756)
         binding.rvHorizon.layoutManager = GridLayoutManager(this, 3)
         binding.rvHorizon.adapter = booksAdapter
+        binding.rvHorizon.adapter?.notifyDataSetChanged()
 
-        booksAdapter.onItemClickListener = this
+        binding.tbgCategory.setOnCheckedChangeListener(SingleSelectToggleGroup.OnCheckedChangeListener { group, checkedId ->
+            Log.d("checked", checkedId.toString())
+            categoryId = checkedId
+            bookList.clear()
+            booksAdapter.notifyDataSetChanged()
+            booksAdapter = BooksAdapter(this, bookList, checkedId)
+            booksAdapter.onItemClickListener = this
+            binding.rvHorizon.layoutManager = GridLayoutManager(this, 3)
+            binding.rvHorizon.adapter = booksAdapter
+        })
 
         binding.bottomNavigationView.setOnItemSelectedListener { item ->
             when (item.itemId) {
@@ -88,7 +97,9 @@ class MainActivity : AppCompatActivity(), BooksAdapter.OnItemClickListener {
 
     override fun onItemClick(book: Books, id: String) {
         var intent = Intent(this, BooksActivity::class.java)
+        Log.d("IndexBook", id)
         intent.putExtra("id", id)
+        intent.putExtra("category", categoryId)
         startActivity(intent)
     }
 

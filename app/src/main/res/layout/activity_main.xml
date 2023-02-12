@@ -44,101 +44,47 @@
         <ScrollView
             android:layout_width="match_parent"
             android:layout_height="match_parent">
-
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
+                <com.nex3z.togglebuttongroup.SingleSelectToggleGroup
+                    android:id="@+id/tbg_category"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <com.nex3z.togglebuttongroup.button.LabelToggle
+                        android:id="@+id/tg_economy"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="경제/경영"/>
+                    <com.nex3z.togglebuttongroup.button.LabelToggle
+                        android:id="@+id/tg_self_help"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="자기계발"/>
+                    <com.nex3z.togglebuttongroup.button.LabelToggle
+                        android:id="@+id/tg_poetry"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="시/에세이"/>
+                    <com.nex3z.togglebuttongroup.button.LabelToggle
+                        android:id="@+id/tg_kids"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="어린이"/>
+                    <com.nex3z.togglebuttongroup.button.LabelToggle
+                        android:id="@+id/tg_study"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="교재/수험서"/>
+                    <com.nex3z.togglebuttongroup.button.LabelToggle
+                        android:id="@+id/tg_human"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="인문"/>
 
-                <Button
-                    android:id="@+id/economy"
-                    style="?android:attr/borderlessButtonStyle"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginRight="10dp"
-                    android:background="@drawable/category_btn_style"
-                    android:minWidth="0dp"
-                    android:minHeight="0dp"
-                    android:padding="10dp"
-                    android:text="경제/경영"
-                    android:textColor="@color/black" />
+                </com.nex3z.togglebuttongroup.SingleSelectToggleGroup>
 
-                <Button
-                    android:id="@+id/self_help"
-                    style="?android:attr/borderlessButtonStyle"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginRight="10dp"
-                    android:background="@drawable/category_btn_style"
-                    android:minWidth="0dp"
-                    android:minHeight="0dp"
-                    android:padding="10dp"
-                    android:text="자기계발"
-                    android:textColor="@color/black" />
 
-                <Button
-                    android:id="@+id/poetry_essay"
-                    style="?android:attr/borderlessButtonStyle"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginRight="10dp"
-                    android:background="@drawable/category_btn_style"
-                    android:minWidth="0dp"
-                    android:minHeight="0dp"
-                    android:padding="10dp"
-                    android:text="시 / 에세이"
-                    android:textColor="@color/black" />
-
-                <Button
-                    android:id="@+id/novel"
-                    style="?android:attr/borderlessButtonStyle"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginRight="10dp"
-                    android:background="@drawable/category_btn_style"
-                    android:minWidth="0dp"
-                    android:minHeight="0dp"
-                    android:padding="10dp"
-                    android:text="소설"
-                    android:textColor="@color/black" />
-
-                <Button
-                    android:id="@+id/study_book"
-                    style="?android:attr/borderlessButtonStyle"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginRight="10dp"
-                    android:background="@drawable/category_btn_style"
-                    android:minWidth="0dp"
-                    android:minHeight="0dp"
-                    android:padding="10dp"
-                    android:text="교재/수험서"
-                    android:textColor="@color/black" />
-
-                <Button
-                    android:id="@+id/human"
-                    style="?android:attr/borderlessButtonStyle"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginRight="10dp"
-                    android:background="@drawable/category_btn_style"
-                    android:minWidth="0dp"
-                    android:minHeight="0dp"
-                    android:padding="10dp"
-                    android:text="인문"
-                    android:textColor="@color/black" />
-
-                <Button
-                    android:id="@+id/kids"
-                    style="?android:attr/borderlessButtonStyle"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginRight="10dp"
-                    android:background="@drawable/category_btn_style"
-                    android:minWidth="0dp"
-                    android:minHeight="0dp"
-                    android:padding="10dp"
-                    android:text="어린이"
-                    android:textColor="@color/black" />
             </LinearLayout>
         </ScrollView>
     </HorizontalScrollView>

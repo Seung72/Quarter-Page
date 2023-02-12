@@ -14,13 +14,21 @@ import com.google.api.ResourceProto.resource
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.ktx.Firebase
 
-class BooksAdapter(var context: Context, var booksList: ArrayList<Books>): RecyclerView.Adapter<BooksAdapter.ViewHolder>(){
+class BooksAdapter(var context: Context, var booksList: ArrayList<Books>, categoryId: Int): RecyclerView.Adapter<BooksAdapter.ViewHolder>(){
 
     var onItemClickListener: OnItemClickListener? = null
 
     init {
         val fireStore = FirebaseFirestore.getInstance()
-        fireStore.collection("books").get().addOnSuccessListener { result ->
+        val category = mapOf(
+            2131296756 to "economy",
+            2131296810 to "human",
+            2131296811 to "kids",
+            2131296812 to "poetry",
+            2131296813 to "self_help",
+            2131296814 to "study"
+        )
+        fireStore.collection(category[categoryId].toString()).get().addOnSuccessListener { result ->
             for (snapshot in result) {
                 var book = snapshot.toObject(Books::class.java)
                 var bookId = book.id
